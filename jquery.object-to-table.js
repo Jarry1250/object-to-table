@@ -14,22 +14,22 @@
  copies or substantial portions of the Software.
  */
 (function ( $ ) {
-	$.toTable = function ( arr, showTotals ) {
-		var rowKeys = Object.keys( arr ).sort(),
+	$.toTable = function ( obj, showTotals ) {
+		var rowKeys = Object.keys( obj ).sort(),
 			columnKeys = [],
 			$table = $( "<table>" );
 		showTotals = (typeof showTotals === 'undefined') ? true : showTotals;
 
 		// Prepare "Total" row at bottom
 		if ( showTotals ) {
-			arr.Total = {};
+			obj.Total = {};
 			rowKeys.push( "Total" );
 		}
 
 		// Extract column keys
-		for ( var key in arr ) {
-			if ( !arr.hasOwnProperty( key ) ) continue;
-			$.extend( columnKeys, arr[key] );
+		for ( var key in obj ) {
+			if ( !obj.hasOwnProperty( key ) ) continue;
+			$.extend( columnKeys, obj[key] );
 		}
 		columnKeys = Object.keys( columnKeys ).sort();
 
@@ -48,13 +48,13 @@
 				rowTotal = 0;
 			for ( i = 0; i < columnKeys.length; i++ ) {
 				var text = "-",
-					number = arr[rowKeys[j]][columnKeys[i]];
+					number = obj[rowKeys[j]][columnKeys[i]];
 				if ( number ) {
 					text = number;
 					if ( showTotals ) {
 						rowTotal += parseFloat( number );
-						if ( !arr.Total[columnKeys[i]] ) arr.Total[columnKeys[i]] = 0;
-						arr.Total[columnKeys[i]] += parseFloat( number );
+						if ( !obj.Total[columnKeys[i]] ) obj.Total[columnKeys[i]] = 0;
+						obj.Total[columnKeys[i]] += parseFloat( number );
 					}
 				}
 				row.append( $( "<td>" ).text( text ) );
