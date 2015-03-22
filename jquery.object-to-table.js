@@ -1,19 +1,19 @@
 /*
-	The MIT License (MIT)
+ The MIT License (MIT)
 
-	Copyright (c) 2015 Harry Burt
+ Copyright (c) 2015 Harry Burt
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
  */
-	(function($) {
+(function ( $ ) {
 	$.toTable = function ( arr, showTotals ) {
 		var rowKeys = Object.keys( arr ).sort(),
 			columnKeys = [],
@@ -21,7 +21,7 @@
 		showTotals = (typeof showTotals === 'undefined') ? true : showTotals;
 
 		// Prepare "Total" row at bottom
-		if( showTotals ) {
+		if ( showTotals ) {
 			arr.Total = {};
 			rowKeys.push( "Total" );
 		}
@@ -38,7 +38,7 @@
 		for ( var i = 0; i < columnKeys.length; i++ ) {
 			headerRow.append( $( "<th>" ).text( columnKeys[i] ) );
 		}
-		if( showTotals ) {
+		if ( showTotals ) {
 			headerRow.append( $( "<th>" ).text( "Total" ) );
 		}
 		$table.append( headerRow );
@@ -51,7 +51,7 @@
 					number = arr[rowKeys[j]][columnKeys[i]];
 				if ( number ) {
 					text = number;
-					if( showTotals ) {
+					if ( showTotals ) {
 						rowTotal += parseFloat( number );
 						if ( !arr.Total[columnKeys[i]] ) arr.Total[columnKeys[i]] = 0;
 						arr.Total[columnKeys[i]] += parseFloat( number );
@@ -59,7 +59,7 @@
 				}
 				row.append( $( "<td>" ).text( text ) );
 			}
-			if( showTotals ) {
+			if ( showTotals ) {
 				row.append( $( "<td>" ).text( rowTotal ) );
 			}
 			$table.append( row );
