@@ -52,9 +52,9 @@
 				if ( number ) {
 					text = number;
 					if( showTotals ) {
-						rowTotal += number;
+						rowTotal += parseFloat( number );
 						if ( !arr.Total[columnKeys[i]] ) arr.Total[columnKeys[i]] = 0;
-						arr.Total[columnKeys[i]] += number;
+						arr.Total[columnKeys[i]] += parseFloat( number );
 					}
 				}
 				row.append( $( "<td>" ).text( text ) );
